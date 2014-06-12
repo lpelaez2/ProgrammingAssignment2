@@ -1,7 +1,7 @@
-## Calculates inverse of a matrix using R solve function and caching matrix 
-## and its inverse to improve computational time.
+## Calculates inverse of a matrix using R solve function and caching matrix and its inverse 
+## to improve computational time.
 ##
-## Test function is provided if you want to use it
+## Test functions are provided if you want to use it
 
 
 ## makeCacheMatrix
@@ -12,7 +12,7 @@ makeCacheMatrix <- function(x = matrix()) {
   my_inverse <- NULL
   
   
-  # Inits my_matrix if a matrix is indicated, otherwise set it as null
+  # Inits matrix if it was indicated, otherwise set it as null
   if (is.null(x)) {
     my_matrix <- NULL
   }
@@ -20,25 +20,26 @@ makeCacheMatrix <- function(x = matrix()) {
     my_matrix <- x
   
   
-  # SetMatrix function: inits matrix using argument and inits its inverse as null
+  # setMatrix function: set matrix (outside environment) using argument and inits its inverse as null
   setMatrix<-function(y){
     my_matrix <<- y
     my_inverse <<- NULL
   }
   
   
-  # GetMatrix function: shows original matrix
+  # getMatrix function: shows original matrix
   getMatrix<-function() {
     my_matrix
   }
   
   
-  # SetInverse function: set inverse matrix using argument
+  # setInverse function: set inverse matrix (outside environment) using argument
   setInverse<-function(x) {
     my_inverse <<- x
   }
   
-  # GetInverse shows inverse matrix
+  
+  # getInverse shows inverse matrix
   getInverse <- function() {
     my_inverse
   }
@@ -54,9 +55,9 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## cacheSolve: 
-##   Calculates inverse of matrix only if was not previously calculated (cached)
+##   Calculates inverse of matrix only if it was not previously calculated (cached)
 
-cacheSolve <- function(my_matrix = matrix(), ...) {
+cacheSolve <- function(my_matrix = matrix()) {
   my_inverse <- my_matrix$getInverse()
   
   if(!is.null(my_inverse)){
@@ -71,7 +72,7 @@ cacheSolve <- function(my_matrix = matrix(), ...) {
 
 
 ## testInverse01
-##   Function to test main functions setting original matrix at the begining . 
+##   Function to test main functions setting matrix at the begining. 
 ##   Sample taken from http://www.mathcentre.ac.uk/resources/uploaded/sigma-matrices11-2009-1.pdf
 testInverse01 <- function() {
   
@@ -81,7 +82,7 @@ testInverse01 <- function() {
 }
 
 ## testInverse02
-##   Function to test main functions setting original matrix later. 
+##   Function to test main functions setting matrix later. 
 ##   Sample taken from http://www.purplemath.com/modules/mtrxinvr.htm
 testInverse02 <- function() {
   
